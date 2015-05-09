@@ -34,6 +34,11 @@ func worker(urlCh chan string, sizeCh chan string, i int) {
      }
    }
 }
+
+func engin(url string, urlCh chan string) {
+   urlCh <- url
+
+}
  
 func main() {
 
@@ -53,7 +58,7 @@ func main() {
 
         
        for _, url := range urls {
-          urlCh <- url
+           go engin(url, urlCh)          
        }
 
       for i := 0; i < len(urls); i++ {
