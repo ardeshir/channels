@@ -2,7 +2,7 @@ package main
 
 import(
    "fmt"
-   "os"
+   // "os"
    "io/ioutil"
    "net/http"
 ) 
@@ -23,21 +23,29 @@ func getPage(url string) (int, error){
    return len(body), nil
 }
 
+func getter(url string, size chan int) {
+   length, err := getPage(url)
+   if err == nil {
+      size <- length
+   }
+}
+ 
 func main() {
 
   	urls := []string{"https://staff.hennepintech.edu", 
 "http://admin.hennepintech.edu",
 "http://ardeshir.org",
 "http://google.com", "http://www.yahoo.com","http://www.bing.com","http://bbc.co.uk"}
+       
+       size := make(chan int)
 
        for _, url := range urls {
+        
+        go getter(url, size)
+      
+       }
 
-          pageLength, err := getPage(url)
-          if err != nil {
-	   os.Exit(1)
-          }
-
-          fmt.Printf("%s is length %d\n", url, pageLength)
-
-     }
+          for i := 0; i < len(urls); i++ {
+             fmt.Printf("Length %d\n", <- size)
+         }
 }
