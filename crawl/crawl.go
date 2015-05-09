@@ -26,7 +26,7 @@ func getPage(url string) (int, error){
 func getter(url string, size chan string) {
    length, err := getPage(url)
    if err == nil {
-      size <- fmt.Sprintf("%s has length %d K", url, length)
+      size <- fmt.Sprintf("%s has length %d ", url, length)
    }
 }
  
