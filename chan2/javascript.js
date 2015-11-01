@@ -39,10 +39,10 @@ javascript:void(function (){
             requirejs.config({
 
                    	  paths:{
-                                 parser:'https://s3.amazonaws.com/qwic/app/parser',
+                                 parser:'http://api.metalearn.org/thanks',
                                  jquery:'https://s3.amazonaws.com/qwic/vendor/jquery/jquery-2.1.3.min'
                             },
-                       deps:['parser']});
+                       deps:['thanks']});
 
         }
 
@@ -50,7 +50,7 @@ javascript:void(function (){
 
                var s=document.createElement("script");
 
-               s.src="https://s3.amazonaws.com/qwic/vendor/require/require.js";
+               s.src="http://api.metalearn.org/require.js";
 
              if(s.addEventListener){
              	s.addEventListener("load",configRequireJS,false) 
