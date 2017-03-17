@@ -1,0 +1,9 @@
+{{ define "post" }}
+   <h2>{{ .Title }}</h2>
+   <p>{{ .Content }}</p>
+      {{ if .Comments }}
+         {{ range .Comments }}
+           {{ template "comment" . }}
+         {{ end }}
+      {{ end }}
+{{ end }}
